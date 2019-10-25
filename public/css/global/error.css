@@ -1,0 +1,18 @@
+/* Error Message Box (Login & Register Pages) */
+.login-error-container {
+    display: inline-block;
+    margin: -25px 0px 20px 0px;
+    padding: 10px;
+    color: darkred;
+    background-color: #ffe6e6;
+    border: 1px solid darkred;
+    border-radius: 10px;
+    width: 375px;
+}
+.validation-errors-list {
+    padding: 0;
+    list-style-type: none;
+}
+.validation-errors-line {
+    text-align: center;
+}

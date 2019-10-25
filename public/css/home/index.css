@@ -1,0 +1,21 @@
+/* Index/Home Page */
+.page-head-cntnr {
+    height: 12vh;
+    width: 100%;
+    max-width: 1600px;
+    text-align: center;
+    font-family: 'Questrial', sans-serif;
+    color: darkslategray;
+}
+.page-head-cntnr > div {
+    display: inline-block;
+    margin-top: 4vh;
+}
+.page-headline {
+    font-size: 32px;
+}
+.page-detail {
+    margin-top: 3px;
+    font-size: 20px;
+    color: #568f8f;
+}

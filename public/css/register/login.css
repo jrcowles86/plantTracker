@@ -1,0 +1,107 @@
+/* Login Page */
+.login-cntnr-div {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    height: 87vh;
+}
+.login-cntnr-left {
+    text-align: center;
+    padding-top: 29%;
+    border: 1px solid darkslategray;
+    border-right: 0px;
+}
+.login-img-cntnr {
+    display: inline-block;
+    width: 25.25vw;
+    text-align: left;
+}
+.login-image {
+    display: block;
+    width: 25vw;
+    margin-bottom: 15px;
+}
+.login-blockquote {
+    font-family: 'Questrial', sans-serif;
+    font-size: 18px;
+    color: darkslategray;
+}
+.login-blockquote-cite {
+    font-family: 'Questrial', sans-serif;
+    color: #568f8f;
+    font-size: 18px;
+    font-weight: 700;
+}
+.login-cntnr-right {
+    border: 1px solid darkslategray;
+    font-family: 'Questrial', sans-serif;
+    position: relative;
+    text-align: center;
+    padding-top: 9vh;
+}
+.login-form-top-div {
+    position: relative;
+    height: 95%;
+    width: 100%;
+    text-align: center;
+}
+.login-form-header {
+    display: block;
+    font-family: 'Questrial', sans-serif;
+    letter-spacing: 3px;
+    color: darkslategray;
+    margin-bottom: 8vh;
+}
+.login-form-input {
+    display: block;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid darkslategray;
+    width: 375px;
+    height: 40px;
+    margin: 25px auto;
+    font-family: 'Questrial', sans-serif;
+    font-size: 16px;
+    color: darkslategray;
+    text-indent: 5px;
+}
+.login-form-checkbox {
+    display: block;
+    outline: none;
+    border: none;
+    margin: 40px auto;
+    font-family: 'Questrial', sans-serif;
+    font-size: 17px;
+    color: darkslategray;
+}
+.login-form-create {
+    display: block;
+    margin-top: 12vh;
+    color: darkslategray;
+    font-size: 20px;
+    font-weight: 400;
+}
+.login-form-create:hover {
+    color: #568f8f;
+}
+.login-form-bttm-div {
+    min-height: 50px;
+    box-sizing: border-box;
+    position: relative;
+    text-align: center;
+    border-top: 1px solid darkslategray;
+    position: absolute;
+    top: 95.2%;
+    width: 100%;
+}
+.login-form-btn {
+    height: 50px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    color: darkslategray;
+    font-size: 16px;
+    letter-spacing: 2px;
+}
+.login-form-btn:hover {
+    color: #568f8f;
+}

@@ -1,0 +1,59 @@
+/* Global Style Defaults */
+* {
+    margin: 0px;
+    box-sizing: border-box;
+}
+body{
+    width: 85%;
+    max-width: 1800px;
+    margin: 0px auto;
+    /*border: 1px solid black;*/
+}
+
+/* Navigation Bar */
+.nav-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    height: 85px;
+    width: 100%;
+    max-width: 1800px;
+}
+.nav-container div {
+    display: inline-block; 
+    /*border: 1px solid black;*/
+}
+.nav-logo-link {
+    display: inline-block;
+    margin-top: 2.30vh;
+    text-decoration: none;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 26px;
+    letter-spacing: 2px;
+    color: darkslategray;
+}
+.logo-accent {
+    color: #568f8f;
+}
+.nav-list {
+    float: right;
+    margin-top: 2.30vh;
+    list-style: none;
+    font-size: 22px;
+    color: darkslategray;
+}
+.nav-list-item {
+    display: inline-block;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.nav-list-item:hover {
+    color: #568f8f;
+}
+.login-link{
+    text-decoration: none;
+    color: darkslategray;
+}
+.login-link:hover {
+    color: #568f8f;
+}
