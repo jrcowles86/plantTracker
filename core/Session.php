@@ -3,6 +3,8 @@
 /* Session will be a parent class, but will not be extended directly. This class will be used primarily for code 
    organization anbd will contain primarily static methods. */
 
+namespace Core;
+
 class Session {
 
     /* Use ternary operator to check if the $_SESSION 'name' key has a value; return true or false. */

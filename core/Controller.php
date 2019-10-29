@@ -1,5 +1,9 @@
 <?php
 
+namespace Core;
+
+use Core\View;
+
 class Controller {
 
     protected $_controller;
@@ -14,11 +18,13 @@ class Controller {
     }
 
     /* Define function that loads a model when called from extended controllers. */
-    protected function loadModel($model) {
+    protected function loadModel($modelName) {
+        $model = 'Core\Model\\' . $modelName;
         if (class_exists($model)) {
             /* Dynamically create a property to store a newly-instantiated model. Pass in 'users' to get Model Users. 
                The value returned from strtolower($model) should equate to the desired database table name, such as 'users' */
-            $this->{$model} = new $model(strtolower($model));
+            $this->{$modelName} = new $model(strtolower($modelName));
+            //dnd($this->$modelName);
         }
     }
 

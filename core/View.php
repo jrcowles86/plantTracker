@@ -1,5 +1,7 @@
 <?php
 
+namespace Core;
+
 class View {
 
     protected $_head, $_body, $_title = SITE_TITLE, $_outputBuffer, $_layout = DEFAULT_LAYOUT, $_post, $_data, $_errors = []; 

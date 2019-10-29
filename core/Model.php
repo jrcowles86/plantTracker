@@ -1,5 +1,9 @@
 <?php
 
+namespace Core;
+
+use Core\Database;
+
 class Model {
 
     protected $_database, $_table, $_modelName, $_softDelete = false, $_columnNames = [];
@@ -12,7 +16,7 @@ class Model {
         $this->setColumns();
         /* Populate _modelName property with the $table name, after some cleanup is done to it. The expression can, for
            example, convert table user_sessions to model UserSessions. */
-        $this->_modelName = str_replace(' ', '', ucwords(str_replace('_', ' ', $this->_table)));
+        $this->_modelName = 'Core\Model\\' . str_replace(' ', '', ucwords(str_replace('_', ' ', $this->_table)));
     }
 
     /* Fetches the table's column info using MySQL statement, sets property _columns with results. */

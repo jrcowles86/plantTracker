@@ -1,5 +1,7 @@
 <?php
 
+namespace Core;
+
 class Input {
 
     public static function sanitize($dirty) {

@@ -26,6 +26,8 @@ class Register extends Controller {
     public function login() {
         /* Begin by instantiating new Validation object. */
         $validation = new Validate();
+        /* If the $_POST array contains a 'username' value, assume the form was submitted and proceed with data validation. 
+           Function filter_has_var() returns boolean on success/failure. */
         if (filter_has_var(INPUT_POST, 'username')) {
             /* Initial validation for login form user submissions. Run check() method on Validate and pass-in array of
                all the data elements that we want to check. Provide check() with the $_POST superglobal and specify each 

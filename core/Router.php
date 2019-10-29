@@ -4,13 +4,16 @@
    something like a URI string and do nothing other than to route that string (and of course any payload passed to 
    POST/PUT) to an appropriate piece of logic that knows what to do with it. */
 
+namespace Core;
+
 class Router {
 
     public static function route($url) {
 
         /* Determine the appropriate controller to call. Can use ternary operator or if-else clause. Pick-out the first
            element of the $url array and array_shift that element off before passing $url along to capture $method value. */
-        $controller = (isset($url[0]) && $url[0] != '') ? ucwords($url[0]) : DEFAULT_CONTROLLER ;
+        $controllerElement = (isset($url[0]) && $url[0] != '') ? ucwords($url[0]) : DEFAULT_CONTROLLER ;
+        $controller = 'Core\Controller\\' . $controllerElement;
         array_shift($url);
 
         /* Determine the appropriate method to call. Also uses ternary operator, ucwords() not required for $method name. */
@@ -20,7 +23,7 @@ class Router {
         /* Check if $controller and $method values match existing classes and methods. If not, redirect to the Home class 
            and index() method. */
         if (!class_exists($controller)) {
-            $controller = DEFAULT_CONTROLLER;
+            $controller = 'Core\Controller\\' . DEFAULT_CONTROLLER;
             $method = DEFAULT_METHOD;
         } else if (class_exists($controller) && !method_exists($controller, $method)) {
             $method = DEFAULT_METHOD;
@@ -35,7 +38,7 @@ class Router {
     public static function redirect($location) {
         if (!headers_sent()) {
             /* If headers are not set, redirect manually using root directory and $location provided by function call. */
-            header('Location: ' . ROOT_DIRECTORY . $location);
+            header('Location: ' . $location);
             exit();
         } else {
             /* If headers are sent, use Javascript to redirect to new $location. */

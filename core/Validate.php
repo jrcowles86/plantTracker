@@ -1,5 +1,7 @@
 <?php
 
+namespace Core;
+
 class Validate {
 
     private $_passed = false, $_errors = [], $_database = NULL;
@@ -9,7 +11,8 @@ class Validate {
     }
 
     /* Method takes $source originating from $_POST[...] and $items[] is a large array containing form validation rules. 
-       Note that multiple foreach loops are required to unpack data in $items as $items array contains other arrays. */
+       Note that multiple foreach loops are required to unpack data in $items as $items array contains other arrays. 
+       The $source argument is often a $_POST array, and $items is a multidimensional array . */
     public function check($source, $items = []) {
         /* Reset the $_errors property as this validation may have been run before during a user's session. */
         $this->_errors = [];
@@ -108,12 +111,11 @@ class Validate {
             foreach ($this->_errors as $error) {
                 if (is_array($error)) {
                     $html .= '<li class="validation-errors-line">' . $error[0] . '</li>';
-                    $html .= '<script>jQuery("document").ready(function(){jQuery("#' . $error[1] . '").parent().closest("div").addClass("has-error");})</script>';
                 } else {
                     $html .= '<li class="valid-errors-line">' . $error . '</li>';
                 }
             }
-            $html .= '</ul></div>';
+            $html .= '</ul></div><br>';
             return $html;
         }
     }

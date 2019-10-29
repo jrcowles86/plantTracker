@@ -1,3 +1,5 @@
 config/
 .htaccess
-**/images
+images/
+fonts/
+snippets.php

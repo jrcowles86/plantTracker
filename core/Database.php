@@ -1,5 +1,9 @@
 <?php
 
+namespace Core;
+
+use \PDO;
+
 class Database {
 
     private static $_instance = null;
