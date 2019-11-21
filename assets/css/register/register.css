@@ -55,6 +55,7 @@
     display: block;
     outline: none;
     border: none;
+    background: transparent;
     border-bottom: 1px solid darkslategray;
     width: 375px;
     height: 40px;
@@ -68,6 +69,7 @@
     display: inline-block !important;
     outline: none;
     border: none;
+    background: transparent;
     border-bottom: 1px solid darkslategray;
     width: 182px;
     height: 40px;
@@ -81,6 +83,7 @@
     display: inline-block !important;
     outline: none;
     border: none;
+    background: transparent;
     border-bottom: 1px solid darkslategray;
     width: 160px;
     height: 40px;
@@ -93,6 +96,7 @@
 .reg-form-text {
     outline: none;
     border: none;
+    background: transparent;
     border-bottom: 1px solid darkslategray;
     width: 375px;
     height: 32px;

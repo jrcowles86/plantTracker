@@ -4,6 +4,8 @@ namespace Core;
 
 class Input {
 
+    /* Running $_POST values through htmlentities() ensures HTML characters are converted into 'entities' that can't be used to
+       inject <script> tags or other nefariousness into your application. */
     public static function sanitize($dirty) {
         return htmlentities($dirty, ENT_QUOTES, "UTF-8");
     }

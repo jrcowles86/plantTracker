@@ -3,8 +3,8 @@
 <?php $this->start('head'); ?>
 
     <!-- Login Page Styles -->
-    <link rel="stylesheet" type="text/css" href="/public/css/register/login.css"/>
-    <link rel="stylesheet" type="text/css" href="/public/css/global/error.css"/>
+    <link rel="stylesheet" type="text/css" href="/assets/css/register/login.css"/>
+    <link rel="stylesheet" type="text/css" href="/assets/css/global/error.css"/>
 
 <?php $this->end(); ?>
 
@@ -16,7 +16,7 @@
 
             <div class="login-cntnr-left">
                 <div class="login-img-cntnr">
-                    <img class="login-image" src="/public/images/oakWoodcutCP.jpg" alt="" class="login-image">
+                    <img class="login-image" src="/assets/images/oakWoodcutCP.jpg" alt="" class="login-image">
                     <blockquote class="login-blockquote">
                         "An Oak tree is a daily reminder that great things often have small beginnings."<br>
                     </blockquote>

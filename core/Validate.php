@@ -12,13 +12,16 @@ class Validate {
 
     /* Method takes $source originating from $_POST[...] and $items[] is a large array containing form validation rules. 
        Note that multiple foreach loops are required to unpack data in $items as $items array contains other arrays. 
-       The $source argument is often a $_POST array, and $items is a multidimensional array . */
+       The $source argument is often a $_POST array, and $items is a multidimensional array with validation rules. */
     public function check($source, $items = []) {
         /* Reset the $_errors property as this validation may have been run before during a user's session. */
         $this->_errors = [];
         /* First of two nested foreach() loops. Method check() takes $  */
         foreach ($items as $item => $rules) {
+            /* Within foreach(), run $_POST values through htmlentities() to ensure HTML characters are converted into 'entities' 
+               that can't be used to inject <script> tags into the application. */
             $item = Input::sanitize($item);
+            /* Grab th  */
             $display = $rules['display'];
             /* Loop through each of the $rules. On each loop, set $value to sanitized and trimmed $source[$item]. Note that 
                $rules is itself an array, hence necessity of a further foreach() loop. The array data in loop looks like this:
@@ -28,7 +31,7 @@ class Validate {
                 /* If the 'required' rule is set to rule_value of true and no value is provided, execute setError() and return to 
                    the Register controller. */
                 if ($rule === 'required' && empty($value)) {
-                    $this->setError(["{display} is required", $item]);
+                    $this->setError(["{$display} is required", $item]);
                 } else if (!empty($value)) {
                     switch ($rule) {
                         case 'min' :

@@ -1,0 +1,122 @@
+/* Delete Pop-Up Div */
+.delete-popup-outer {
+    visibility: visible;
+    position:fixed;
+    padding:0;
+    margin:0;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background:rgba(255,255,255,0.75);
+    z-index: 3;
+}
+.delete-popup-inner {
+    z-index: 6;
+    height: 30vh;
+    width: 30vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    background-color: #437070;
+    border: 2px solid darkslategray;
+    transform: translate(-50%, -50%);
+}
+.delete-close-span {
+    margin: -22px -22px 0px 0px;
+    text-align: center;
+    padding-top: 8px;
+    float: right;
+    height: 45px;
+    width: 47px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: darkslategray;
+    background-color: #afcfcf;
+    border-radius: 25px;
+    border: 2px solid darkslategray;
+    cursor: pointer;
+}
+.delete-close-span:hover {
+    background-color: #cccccc;
+    color: #666666;
+}
+.delete-popup-wrapper {
+    position: absolute;
+    height: 70%;
+    width: 90%;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    padding: 15px;
+    text-align: center;
+    /*border: 1px solid whitesmoke;*/
+}
+.delete-popup-list {
+    list-style-type: none;
+    padding: 0px;
+}
+.delete-popup-item h2 {
+    margin-bottom: 10px;
+    font-family: 'Questrial', sans-serif;
+    font-size: 42px;
+    font-weight: 400;
+    color: whitesmoke;
+}
+.delete-popup-item p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+    font-style: italic;
+    color: #9fc6c6;
+}
+.delete-popup-item:last-of-type {
+    margin-top: 7vh;
+    /*border: 1px solid gold;*/
+}
+.delete-popup-form {
+    display: inline-block;
+}
+.delete-submit {
+    display: inline-block;
+    margin-right: 25px;
+    height: 45px;
+    width: 165px;
+    outline: none;
+    border: none;
+    background-color: #afcfcf;
+    border-radius: 8px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: darkslategray;
+    cursor: pointer;
+    border: 2px solid darkslategray;
+}
+.delete-submit:hover {
+    background-color: #cccccc;
+    color: #595959;
+}
+.delete-cancel-btn {
+    display: inline-block;
+    margin-left: 25px;
+    height: 45px;
+    width: 165px;
+    outline: none;
+    border: none;
+    background-color: #afcfcf;
+    border-radius: 8px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: darkslategray;
+    border: 2px solid darkslategray;
+    cursor: pointer;
+}
+.delete-cancel-btn:hover {
+    background-color: #cccccc;
+    color: #595959;
+}

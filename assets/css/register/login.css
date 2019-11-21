@@ -55,6 +55,7 @@
     display: block;
     outline: none;
     border: none;
+    background: transparent;
     border-bottom: 1px solid darkslategray;
     width: 375px;
     height: 40px;

@@ -1,0 +1,432 @@
+/* Plant Update Container */
+.update-page-cntnr {
+    width: 100%;
+}
+
+/* Delete Pop-Up Div */
+.delete-popup-outer {
+    visibility: hidden;
+    position:fixed;
+    padding:0;
+    margin:0;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background:rgba(255,255,255,0.75);
+    z-index: 3;
+}
+.delete-popup-inner {
+    z-index: 6;
+    height: 30vh;
+    width: 30vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    background-color: #437070;
+    border: 2px solid darkslategray;
+    transform: translate(-50%, -50%);
+}
+.delete-close-span {
+    margin: -22px -22px 0px 0px;
+    text-align: center;
+    padding-top: 8px;
+    float: right;
+    height: 45px;
+    width: 47px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: darkslategray;
+    background-color: #afcfcf;
+    border-radius: 25px;
+    border: 2px solid darkslategray;
+    cursor: pointer;
+}
+.delete-close-span:hover {
+    background-color: #cccccc;
+    color: #666666;
+}
+.delete-popup-wrapper {
+    position: absolute;
+    height: 70%;
+    width: 90%;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    padding: 15px;
+    text-align: center;
+    /*border: 1px solid whitesmoke;*/
+}
+.delete-popup-list {
+    list-style-type: none;
+    padding: 0px;
+}
+.delete-popup-item h2 {
+    margin-bottom: 10px;
+    font-family: 'Questrial', sans-serif;
+    font-size: 42px;
+    font-weight: 400;
+    color: whitesmoke;
+}
+.delete-popup-item p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+    font-style: italic;
+    color: #9fc6c6;
+}
+.delete-popup-item:last-of-type {
+    margin-top: 7vh;
+    /*border: 1px solid gold;*/
+}
+.delete-popup-form {
+    display: inline-block;
+}
+.delete-submit {
+    display: inline-block;
+    margin-right: 25px;
+    height: 45px;
+    width: 165px;
+    outline: none;
+    border: none;
+    background-color: #afcfcf;
+    border-radius: 8px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: darkslategray;
+    cursor: pointer;
+    border: 2px solid darkslategray;
+}
+.delete-submit:hover {
+    background-color: #cccccc;
+    color: #595959;
+}
+.delete-cancel-btn {
+    display: inline-block;
+    margin-left: 25px;
+    height: 45px;
+    width: 165px;
+    outline: none;
+    border: none;
+    background-color: #afcfcf;
+    border-radius: 8px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: darkslategray;
+    border: 2px solid darkslategray;
+    cursor: pointer;
+}
+.delete-cancel-btn:hover {
+    background-color: #cccccc;
+    color: #595959;
+}
+
+/* Update Title Container: IMAGE (Left) */
+.update-title-cntnr {
+    display: grid;
+    grid-template-columns: auto 3fr;
+    grid-template-rows: 1fr;
+    min-height: 250px;
+    width: 100%;
+}
+.plant-image-cntnr {
+    height: auto;
+    width: auto;
+}
+.plant-image-cntnr img {
+    height: 250px;
+    max-width: auto;
+    border-radius: 25px;
+}
+
+/* Update Title Container: DESCRIPTION (Right) */
+.title-descr-div {
+    position: relative;
+}
+.title-descr-cntnr {
+    width: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+.title-descr-list {
+    display: inline-block;
+    list-style-type: none;
+    padding: 0;
+}
+.title-descr-list li:first-of-type {
+    padding-right: 3vw;
+    border-bottom: 2px solid #737373;
+}
+.title-descr-list li:last-of-type {
+    margin: 30px 0px 0px 0px;
+}
+.plant-icons-item {
+    padding-left: 4vw;
+}
+.plant-icons-item a {
+    display: inline-block;
+    margin-right: 4vw;
+    text-decoration: none;
+}
+.plant-icons-item a i {
+    cursor: pointer;
+    font-size: 36px;
+    color: #4d8080;
+}
+.plant-icons-item a i:hover {
+    color: #a970a9;
+}
+#delete-icon {
+    cursor: pointer;
+    font-size: 36px;
+    color: #4d8080;
+}
+#delete-icon:hover {
+    color: #a970a9;
+}
+.plant-genus {
+    display: inline-block;
+    font-family: 'Questrial', sans-serif;
+    font-size: 56px;
+    letter-spacing: 3px;
+    color: darkslategray;
+}
+.plant-species {
+    display: inline-block;
+    margin-left: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 48px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    color: #568f8f;
+}
+.plant-order-family {
+    padding: 7px 0px 0px 23px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    color: #666666;
+}
+
+/* Update Body Container*/
+.update-body-cntnr {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    height: auto;
+    width: 100%;
+}
+
+/* Update Body: LEFT-TOP Container */
+.update-left {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+}
+.update-left-cntnr {
+    margin: 25px 13px 0px 0px;
+    border-radius: 25px;
+    background-color: white;
+    border: 1px solid white;
+}
+.update-left-wrapper {
+    margin: 18px 17px 17px 22px;
+}
+.update-left-wrapper h2 {
+    display: inline-block;
+    font-family: 'Questrial', sans-serif;
+    font-size: 42px;
+    letter-spacing: 2px;
+    font-weight: 400;
+    color: darkslategray;
+}
+.plant-specifics-list {
+    margin-top: 18px;
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+}
+.plant-specifics-item {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    color: darkslategray;
+    padding-bottom: 3px;
+}
+.plant-specifics-item p {
+    display: inline-block;
+}
+.update-para {
+    color: #4d8080;
+}
+.plant-specifics-item input {
+    height: 27px;
+    width: 80%;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 17px;
+    color: #4d8080;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+.plant-specifics-item input:hover {
+    color: #808080;
+    background-color: #f2f2f2;
+}
+.plant-specifics-item input:focus {
+    color: #808080;
+    background-color: #f2f2f2;
+}
+.plant-commonname-input {
+    width: 70% !important;
+}
+.plant-requirements-input {
+    height: 75px;
+    width: 100%;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 17px;
+    color: #4d8080;
+    border: none;
+    outline: none;
+}
+.plant-requirements-input:hover {
+    color: #808080;
+    background-color: #f2f2f2;
+}
+.plant-requirements-input:focus {
+    color: #808080;
+    background-color: #f2f2f2;
+}
+.inventory-para {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 12px 16px;
+    background-color: #ecdfec;
+    border-radius: 5px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+    color: #666666;
+}
+.inventory-input {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 17px;
+    width: 45px;
+    height: 30px;
+    font-weight: 600;
+    text-align: center;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+}
+.inventory-input:hover {
+    background-color: #f2f2f2;
+}
+.inventory-input:focus {
+    background-color: #f2f2f2;
+}
+
+/* Update Body: LEFT-BOTTOM Container */
+.update-left-btm {
+    margin: 25px 13px 0px 0px;
+    border-radius: 25px;
+    background-color: white;
+    border: 1px solid white;
+    margin-bottom: 50px;
+}
+.left-btm-wrapper {
+    margin: 18px 17px 17px 22px;
+}
+.left-btm-wrapper h2 {
+    display: inline-block;
+    font-family: 'Questrial', sans-serif;
+    font-size: 42px;
+    letter-spacing: 2px;
+    font-weight: 400;
+    color: darkslategray;
+}
+.left-btm-wrapper p {
+    line-height: 1.3em;
+    font-family: 'Questrial', sans-serif;
+    font-size: 19px;
+    color: #4d8080;
+}
+
+/* Update Body: RIGHT-TOP Container */
+.update-right-top {
+    margin: 25px 0px 0px 13px;
+    height: auto;
+    border-radius: 25px;
+    background-color: white;
+    border: 1px solid white;
+    margin-bottom: 50px;
+}
+.right-top-wrapper {
+    margin: 18px 17px 17px 22px;
+}
+.right-top-wrapper h2 {
+    display: inline-block;
+    font-family: 'Questrial', sans-serif;
+    font-size: 42px;
+    letter-spacing: 2px;
+    font-weight: 400;
+    color: darkslategray;
+}
+.plant-resources-list {
+    display: inline-block;
+    margin-top: 18px;
+    width: 100%;
+    list-style-type: none;
+    padding: 0;
+}
+.plant-resources-item {
+    font-family: 'Open Sans', sans-serif;
+    padding-bottom: 5px;
+}
+.plant-resources-item p {
+    display: inline-block;
+    font-size: 19px;
+    color: #4d8080;
+    font-weight: 600;
+    border-bottom: 2px solid #959595;
+}
+.resource-input {
+    width: 100%;
+    height: 29px;
+    font-size: 15px;
+    color: #666666;
+    outline: none;
+    border: none;
+}
+.resource-input:hover {
+    color: #808080;
+    background-color: #f2f2f2;
+}
+.plant-resources-item a {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 15px;
+    color: #666666;
+    font-weight: 400;
+}
+.update-submit-button {
+    display: block;
+    cursor: pointer;
+    margin: 2.75vh auto 0 auto;
+    padding: 12px;
+    outline: none;
+    border: none;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    color: #666666;
+    background-color: #ecdfec;
+    border-radius: 5px;
+}
+.update-submit-button:hover {
+    background-color: #e6e6e6;
+}

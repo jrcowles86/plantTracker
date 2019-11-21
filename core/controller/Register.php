@@ -43,7 +43,7 @@ class Register extends Controller {
                     'required' => true,
                     'min' => 6
                 ]
-            ]); 
+            ]);
             if ($validation->passed()) {
                 /* Assuming the Users model loaded in the __construct, execute the Model findByUsername() method to using
                    the Login Page submitted username/email input field. */

@@ -10,7 +10,8 @@ class Database {
     private $_pdo, $_stmt, $_error = false, $_result, $_count = 0, $_lastInsertId = null;
 
     /* Constructor method instantiates a PDO object and logs the application in to the MySQL database. */
-    public function __construct() {
+    private function __construct() {
+        $this->_pdo = null;
         try {
             $this->_pdo = new PDO(DSN, USERNAME, PASSWORD, 
             [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ]);
@@ -26,6 +27,9 @@ class Database {
         return self::$_instance;  /* If Database object already exists, return the object to the code that called for it. */
     }
 
+    /* When RESULT is chained-on after query(), returns only an array of objects (contents of $_result) instead of the entire 
+       Database object, which is the default return value for query(). Also checking if result array has only one element; if so,
+       will return only the single object, without the enclosing array. */
     public function result() {
         return $this->_result;
     }
@@ -48,6 +52,7 @@ class Database {
     /* The query() method stores the foundational logic that most methods in class Database use to execute SQL statements.
        Resolved issues with query() on Thurs, 17 Oct. */
     public function query($sql, $params = []) {
+        $this->_error = false;
         $this->_stmt = $this->_pdo->prepare($sql);
         $counter = 1;
         if (count($params)) {
@@ -62,7 +67,13 @@ class Database {
            Commands UPDATE, INSERT and DELETE do not provide results from PDO, thus the query() method would fail here. */
         $sqlTerm = ( stristr($sql, 'SELECT') || stristr($sql, 'SHOW') );
         if ($sqlTerm) {
-            $this->_result = $this->_stmt->fetchAll();
+            /*$this->_result = $this->_stmt->fetchAll();*/
+            $results = $this->_stmt->fetchAll();
+            if (count($results) <= 1) {
+                $this->_result = $results[0];
+            } else if (count($results) > 1) {
+                $this->_result = $results;
+            }
             $this->_count = $this->_stmt->rowCount();
         }
         /* Use this return expression to test whether query() works from a controller. */
@@ -89,24 +100,34 @@ class Database {
         return false;    /* No error will be returned. If method doesn't work, method returns value of 'false' */
     }
 
-    public function update($table, $id, $columns = []) {    /* $table and $id allow method to find the appropriate record. */
+    /* UPDATE has been adjusted to take $id as an array with $key as column name and $value as the ID (integer, presumably). */
+    public function update($table, $idArray = [], $columns = []) {    /* $table and $id allow method to find the appropriate record. */
         $columnString = '';
-        $values = '';
-        foreach ($columns as $column => $value) {
-            $columnString .= ' ' . ' = ?,';
+        $values = [];
+        foreach ($idArray as $columnName => $value) {
+            $keyColumn = $columnName;
+            $keyValue = $value;
+        }
+        foreach ($columns as $columnName => $value) {
+            $columnString .= ' ' . $columnName . ' = ?,';
             $values[] = $value;
         }
         $columnString = trim($columnString);
-        $columnString = rtrim($columnString);
-        $sql = "UPDATE {$table} SET {$columnString} WHERE user_id = {$id}";
+        $columnString = rtrim($columnString, ',');
+        $sql = "UPDATE {$table} SET {$columnString} WHERE {$keyColumn} = {$keyValue}";
         if ($this->query($sql, $values)) {
             return true;
         }
         return false;
     }
 
-    public function delete($table, $id) {
-        $sql = "DELETE FROM {$table} WHERE user_id = {$id}";
+    /* DELETE has been adjusted to take an array for $id and table name. $id contains $columnName and $value. */
+    public function delete($table, $id = []) {
+        foreach ($id as $columnName => $value) {
+            $keyColumn = $columnName;
+            $keyValue = $value;
+        }
+        $sql = "DELETE FROM {$table} WHERE {$keyColumn} = {$keyValue}";
         if ($this->query($sql)) {
             return true;
         }
@@ -120,37 +141,37 @@ class Database {
        statment this method builds: "SELECT * FROM users WHERE last_name = ? AND first_name = ? ORDER BY last_name LIMIT 3" */
     protected function _read($table, $params = []) {
         /* Initiate variables. These will become the components of a dynamically-created SQL statement. */
-        $conditionString = '';
-        $bind = [];
+        $columnString = '';
+        $values = [];
         $order = '';
         $limit = '';
         /* Set conditions. Foreach() handles $params['conditions'] provided as an array within an array. Else() handles 
            single conditions. */
-        if (isset($params['conditions'])) {
-            if (is_array($params['conditions'])) {
-                foreach ($params['conditions'] as $condition) {
-                    $conditionString .= ' ' . $condition . ' AND';   /* Example: 'WHERE last_name = ? AND first_name = ? */
+        if (isset($params['columns'])) {
+            if (is_array($params['columns'])) {
+                foreach ($params['columns'] as $column) {
+                    $columnString .= ' ' . $column . ' = ? AND';    /* Example: ' last_name = ? AND first_name = ? */
                 }
-                $conditionString = trim($conditionString);       /* Remove excess space from beginning of string. */
-                $conditionString = rtrim($conditionString, ' AND');   /* Remove excess ' AND' applied to string by foreach() */
+                $columnString = trim($columnString);                /* Remove excess space from beginning of string. */
+                $columnString = rtrim($columnString, ' AND');       /* Remove excess ' AND' applied to string by foreach() */
             } else {
                 /* If $params['conditions'] is not array, simply set $conditionString to value assoc with $params['conditions'] */
-                $conditionString = $params['conditions'];
+                $columnString = $params['columns'];
             }
         }
-        /* Append string 'WHERE ' to the $conditionString defined above. This step completes the query conditions. 
-           IF requires the condition is not an empty string. */
-        if ($conditionString != '') {
-            $conditionString = ' WHERE ' . $conditionString;
+        /* Append string 'WHERE ' to the $conditionString defined above IF there are conditions. This step completes the query 
+           conditions. IF requires the condition is not an empty string. */
+        if ($columnString != '') {
+            $columnString = ' WHERE ' . $columnString;
         }
         /* Bind values. First, check if 'bind' key is populated in $params[] array. If so, move 'bind' contents into variable.*/
-        if (array_key_exists('bind', $params)) {
-            $bind = $params['bind'];
+        if (array_key_exists('values', $params)) {
+            $values = $params['values'];
         }
         /* Order results. As above, check that 'order' key is populated, then concatenate value with 'ORDER BY ' */
         if (array_key_exists('order', $params)) {
             $order = ' ORDER BY ' . $params['order'];
-        } 
+        }
         /* Limit results. Likewise, if populated in $params array, construct LIMIT statement using the provided value.  */
         if (array_key_exists('limit', $params)) {
             $limit = ' LIMIT ' . $params['limit'];
@@ -158,13 +179,12 @@ class Database {
         /* Define the remainder of the SQL statement and add placeholders for interpolating prepared variables. 
            Note: no spaces required between placeholders as spaces are already factored in to our variables. The query ()
            method automatically posts results to the _result property, so check for _result values, if exist, return true. */
-        $sql = "SELECT * FROM {$table}{$conditionString}{$order}{$limit}";
-        //dnd($sql);
-        if ($this->query($sql, $bind)) {
-            if (!count($this->_result)) {
-                return false;
+        $sql = "SELECT * FROM {$table}{$columnString}{$order}{$limit}";
+        if ($this->query($sql, $values)) {
+            if (count($this->_result)) {
+                return true;
             }
-            return true;
+            return false;
         }
         return false;
     }

@@ -22,7 +22,9 @@ function currentUser() {
 function postedValues($dirtyPost) {
     $cleanPost = [];
     foreach ($dirtyPost as $key => $value) {
-        $cleanPost[$key] = sanitize($value);
+        $cleanValue = sanitize($value);
+        $cleanValue = ($cleanValue == "") ? ($cleanValue = NULL) : $cleanValue ;
+        $cleanPost[$key] = $cleanValue;
     }
     return $cleanPost;
 }

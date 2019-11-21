@@ -3,7 +3,7 @@
 <?php $this->start('head'); ?>
     <!-- The css link below only provides styles for the body of the idnex page. Each page should have their own
          specific CSS link in the page head. The layout/navbar/footer CSS is provided through the layout. -->
-    <link rel="stylesheet" type="text/css" href="/public/css/home/index.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/home/index.css">
 <?php $this->end(); ?>
 
 <?php $this->start('body'); ?>
@@ -28,6 +28,8 @@
                                   var_dump($_COOKIE);
                                   echo '</pre>';
                                 ?>
+            <br><br><br><br><br>
+            <?php echo 'ROOT: ' . ROOT; ?>
 
         </div>
     </div>

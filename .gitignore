@@ -1,5 +1,7 @@
+# CORE files
 config/
 .htaccess
 images/
 fonts/
+notes/
 snippets.php

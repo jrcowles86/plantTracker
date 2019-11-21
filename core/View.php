@@ -15,6 +15,9 @@ class View {
         } else if (file_exists(ROOT . DS . 'views' . DS . 'register' . DS . $view . '.php')) {
             include(ROOT . DS . 'views' . DS . 'register' . DS . $view . '.php');
             include(ROOT . DS . 'views' . DS . 'layouts' . DS . $this->_layout . '.php');
+        } else if (file_exists(ROOT . DS . 'views' . DS . 'plants' . DS . $view . '.php')) {
+            include(ROOT . DS . 'views' . DS . 'plants' . DS . $view . '.php');
+            include(ROOT . DS . 'views' . DS . 'layouts' . DS . $this->_layout . '.php');
         }
     }
 
@@ -82,7 +85,5 @@ class View {
     public function getErrors() {
         return $this->_errors;
     }
-
-
 
 }

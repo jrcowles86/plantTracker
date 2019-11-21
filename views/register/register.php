@@ -3,8 +3,8 @@
 <?php $this->start('head'); ?>
 
     <!-- Register Page Styles -->
-    <link rel="stylesheet" type="text/css" href="/public/css/register/register.css" />
-    <link rel="stylesheet" type="text/css" href="/public/css/global/error.css"/>
+    <link rel="stylesheet" type="text/css" href="/assets/css/register/register.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/global/error.css"/>
 
 <?php $this->end(); ?>
 
@@ -16,7 +16,7 @@
 
             <div class="reg-cntnr-left">
                 <div class="reg-img-cntnr">
-                    <img class="reg-image" src="/public/images/salviaCarduacea.jpg" alt="">
+                    <img class="reg-image" src="/assets/images/salviaCarduacea.jpg" alt="">
                     <blockquote class="reg-blockquote">
                         "And forget not that the earth delights to feel your bare feet and the winds long to play with your hair."<br>
                     </blockquote>

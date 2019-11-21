@@ -22,4 +22,8 @@ class Home extends Controller {
         $this->view->render('index');
     }
 
+    public function vue() {
+        $this->view->render('app');
+    }
+
 }
