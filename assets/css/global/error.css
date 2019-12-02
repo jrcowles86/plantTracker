@@ -16,3 +16,9 @@
 .validation-errors-line {
     text-align: center;
 }
+
+/* Login Page Errors */
+.login-errors-cntnr {
+    border: 2px solid darkred;
+    background-color: ;
+}

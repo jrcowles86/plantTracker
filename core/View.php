@@ -4,7 +4,7 @@ namespace Core;
 
 class View {
 
-    protected $_head, $_body, $_title = SITE_TITLE, $_outputBuffer, $_layout = DEFAULT_LAYOUT, $_post, $_data, $_errors = []; 
+    protected $_head, $_body, $_title = SITE_TITLE, $_outputBuffer, $_layout = DEFAULT_LAYOUT, $_post, $_data, $_errors; 
 
     /* Method render() takes in view name and locates the appropriate view and layout files. This layout is set to a 
        global default.*/

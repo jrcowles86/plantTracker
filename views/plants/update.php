@@ -18,7 +18,6 @@
         <!-- Update Page Container -->
         <div class="update-page-cntnr">
         <?php $plant = $this->getData(); ?>
-        <?php //dnd($plant); ?>
 
         <!-- Delete Confirm Pop-Up -->
         <div class="delete-popup-outer" style="visibility: hidden;">
@@ -114,6 +113,10 @@
                                     <p><b>Requirements:&nbsp;</b></p>
                                     <textarea class="plant-requirements-input" rows="5" cols="50" name="requirements"><?= $plant->requirements; ?></textarea>
                                 </li>
+                                <li class="plant-specifics-item">
+                                    <p><b>Range & Ecology:&nbsp;</b></p>
+                                    <textarea class="plant-requirements-input" rows="5" cols="50" name="range_ecology"><?= $plant->range_ecology; ?></textarea>
+                                </li>
                             </ul>
                             <p class="inventory-para"> Inventory: &nbsp;
                                 <input class="inventory-input" type="number" name="inventory" value="<?= $plant->inventory; ?>">
@@ -178,6 +181,14 @@
                                 <li class="plant-resources-item">
                                     <p>Inland Valley Garden Planner</p><br>
                                     <input class="resource-input" type="url" name="inland_planner" value="<?= $plant->inland_planner ?>">
+                                </li>
+                                <li class="plant-resources-item">
+                                    <p>California Flora Nursery</p><br>
+                                    <input class="resource-input" type="url" name="california_flora" value="<?= $plant->california_flora ?>">
+                                </li>
+                                <li class="plant-resources-item">
+                                    <p>OC Natural History</p><br>
+                                    <input class="resource-input" type="url" name="oc_natural_history" value="<?= $plant->oc_natural_history ?>">
                                 </li>
                             </ul>
                             <input class="update-submit-button" type="submit" name="update-submit" value="Submit Update">

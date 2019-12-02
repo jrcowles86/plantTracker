@@ -13,7 +13,7 @@ class Model {
         $this->_database = Database::instance();
         $this->_table = $table;
         /* Run method defined below immediately on instantiation. */
-        $this->setColumns();
+        /* $this->setColumns(); */
         /* Populate _modelName property with the $table name, after some cleanup is done to it. The expression can, for
            example, convert table user_sessions to model UserSessions. */
         $this->_modelName = 'Core\Model\\' . str_replace(' ', '', ucwords(str_replace('_', ' ', $this->_table)));
@@ -111,8 +111,11 @@ class Model {
 
     /* Takes $id and $columns as arguments. Perform validation on $columns and $id; if invalid, return false. If valid, 
        method executes the Database update() method, $table param not required as this Model already contains that value. */
-    public function update() {
-        if ( empty($columns || $id == '' )) {
+    public function update($id, $columns) {
+        //dnd($this->_table);
+        if (empty($columns) || $id == '') {
+            return false;
+        } else {
             return $this->_database->update($this->_table, $id, $columns);
         }
     }
@@ -135,9 +138,43 @@ class Model {
 
     /* Extract the query() method from _database so that query() can be run directly from the Model, thus no need for
        syntax $this->_database->query(). Set $bind to empty array so that query() can be run wide-open. */
-    public function query($sql, $bind = []) {
-        return $this->_database->query($sql, $bind);
+    public function query($sql, $params) {
+        /* Query() will convert single-value strings to an array before passing along to $this->_database->query(). */
+        $paramArray = (!is_array($params)) ? [$params] : $params ;
+        $this->_database->query($sql, $paramArray);
+        $resultArray = $this->_database->result();
+        /* Return single object if one result, array if multiple results. */
+        if (count($resultArray) == 1) {
+            $results = $resultArray[0];
+        } else if (count($resultArray)) {
+            $results = $resultArray;
+        }
+        return $results;
     }
+
+
+
+
+    public function allRecords() {
+        if (!$this->_database->allRecords($this->_table)) {
+            return false;
+        } else {
+            $resultArray = $this->_database->result();
+            /* Ensure an array is returned--required to iterate through results--even if one result is returned. */
+            if (!is_array($resultArray)) {
+                $results = [
+                    $resultArray
+                ];
+            } else {
+                $results = $resultArray;
+            }
+            return $results;
+        }
+    }
+
+
+
+
 
     /* The assign() method helps with preparation of insert or update statements. Loop through $params array, for each $key,
        run the sanitize function in helpers.php on the $value. Function santitize() uses the PHP htmlentities() function. 

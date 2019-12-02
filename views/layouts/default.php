@@ -35,7 +35,7 @@
                     </a>
                 </li>
                 <li class="nav-list-item">
-                    <a class="login-link" href="/register/login" title="Login/Register">
+                    <a class="login-link" href="/register/index" title="Login/Register">
                         <i class="far fa-user-circle"></i>
                     </a>
                 </li>

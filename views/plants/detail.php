@@ -92,10 +92,10 @@
                                     </li>
                                 <?php endif; ?>
                                 <?php if (!empty($plant->family)): ?>
-                                <li class="plant-specifics-item">
-                                    <p><b>Family:&nbsp;</b></p>
-                                    <a href="https://en.wikipedia.org/wiki/<?= $plant->family; ?>"><?= $plant->family; ?></a>
-                                </li>
+                                    <li class="plant-specifics-item">
+                                        <p><b>Family:&nbsp;</b></p>
+                                        <a href="https://en.wikipedia.org/wiki/<?= $plant->family; ?>"><?= $plant->family; ?></a>
+                                    </li>
                                 <?php endif; ?>
                                 <?php if (!empty($plant->genus)): ?>
                                     <li class="plant-specifics-item">
@@ -143,6 +143,12 @@
                                     <li class="plant-specifics-item">
                                         <p><b>Requirements: &nbsp;</b></p>
                                         <p class="detail-para"><?= $plant->requirements; ?></p>
+                                    </li>
+                                <?php endif; ?>
+                                <?php if (!empty($plant->range_ecology)): ?>
+                                    <li class="plant-specifics-item">
+                                        <p><b>Range & Ecology: &nbsp;</b></p>
+                                        <p class="detail-para"><?= $plant->range_ecology; ?></p>
                                     </li>
                                 <?php endif; ?>
                             </ul>
@@ -224,6 +230,18 @@
                                     <li class="plant-resources-item">
                                         <p>Inland Valley Garden Planner</p><br>
                                         <a href="<?= $plant->inland_planner ?>"><?= $plant->inland_planner ?></a>
+                                    </li>
+                                <?php endif; ?>
+                                <?php if (!empty($plant->california_flora)): ?>
+                                    <li class="plant-resources-item">
+                                        <p>California Flora Nursery</p><br>
+                                        <a href="<?= $plant->inland_planner ?>"><?= $plant->california_flora ?></a>
+                                    </li>
+                                <?php endif; ?>
+                                <?php if (!empty($plant->oc_natural_history)): ?>
+                                    <li class="plant-resources-item">
+                                        <p>Orange County Natural History</p><br>
+                                        <a href="<?= $plant->inland_planner ?>"><?= $plant->oc_natural_history ?></a>
                                     </li>
                                 <?php endif; ?>
                             </ul>

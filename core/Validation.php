@@ -2,7 +2,10 @@
 
 namespace Core;
 
-class Validate {
+use Core\Database;
+use Core\Input;
+
+class Validation {
 
     private $_passed = false, $_errors = [], $_database = NULL;
 
@@ -13,7 +16,7 @@ class Validate {
     /* Method takes $source originating from $_POST[...] and $items[] is a large array containing form validation rules. 
        Note that multiple foreach loops are required to unpack data in $items as $items array contains other arrays. 
        The $source argument is often a $_POST array, and $items is a multidimensional array with validation rules. */
-    public function check($source, $items = []) {
+    public function validate($source, $items = []) {
         /* Reset the $_errors property as this validation may have been run before during a user's session. */
         $this->_errors = [];
         /* First of two nested foreach() loops. Method check() takes $  */
@@ -31,7 +34,7 @@ class Validate {
                 /* If the 'required' rule is set to rule_value of true and no value is provided, execute setError() and return to 
                    the Register controller. */
                 if ($rule === 'required' && empty($value)) {
-                    $this->setError(["{$display} is required", $item]);
+                    $this->setError(["{$display} is required.", $item]);
                 } else if (!empty($value)) {
                     switch ($rule) {
                         case 'min' :
@@ -77,6 +80,11 @@ class Validate {
                                 $this->setError(["{$display} must be a valid email address.", $item]);
                             }
                             break;
+                        case 'valid_url' :
+                            if (!filter_var($value, FILTER_VALIDATE_URL)) {
+                                $this->setError(["{$display} must be a valid URL.", $item]);
+                            }
+                            break;
                     }
                 }
             }
@@ -110,12 +118,12 @@ class Validate {
 
     public function displayErrors() {
         if ($this->_errors) {
-            $html = '<div class="login-error-container"><ul class="validation-errors-list">';
+            $html = '<div><ul>';
             foreach ($this->_errors as $error) {
                 if (is_array($error)) {
-                    $html .= '<li class="validation-errors-line">' . $error[0] . '</li>';
+                    $html .= '<li>' . $error[0] . '</li>';
                 } else {
-                    $html .= '<li class="valid-errors-line">' . $error . '</li>';
+                    $html .= '<li>' . $error . '</li>';
                 }
             }
             $html .= '</ul></div><br>';

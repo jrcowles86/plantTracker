@@ -29,7 +29,14 @@
             <form class="login-form" action="/register/login" method="post">
                 <div class="login-form-top-div">
                     <h2 class="login-form-header">LOG IN</h2>
-                        <?= $this->getErrors(); ?> 
+
+                        <?php $errors = (!empty($this->getErrors())) ? $this->getErrors() : [] ; ?>
+                        <?php foreach ($errors as $error): ?>
+                            <div class="login-errors-cntnr">
+                                <p><?= $error; ?></p>
+                            </div>
+                        <?php endforeach; ?>
+
                     <input class="login-form-input" type="text" name="username" placeholder="USERNAME OR EMAIL" required>
                     <input class="login-form-input" type="password" name="password" placeholder="PASSWORD" required>
                     <label class="login-form-checkbox" for="remember_me">Remember Me  <input type="checkbox" id="remember_me" name="remember_me" checked=checked></label>

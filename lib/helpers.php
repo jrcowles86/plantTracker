@@ -23,7 +23,6 @@ function postedValues($dirtyPost) {
     $cleanPost = [];
     foreach ($dirtyPost as $key => $value) {
         $cleanValue = sanitize($value);
-        $cleanValue = ($cleanValue == "") ? ($cleanValue = NULL) : $cleanValue ;
         $cleanPost[$key] = $cleanValue;
     }
     return $cleanPost;

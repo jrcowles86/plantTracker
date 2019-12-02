@@ -67,16 +67,9 @@ class Database {
            Commands UPDATE, INSERT and DELETE do not provide results from PDO, thus the query() method would fail here. */
         $sqlTerm = ( stristr($sql, 'SELECT') || stristr($sql, 'SHOW') );
         if ($sqlTerm) {
-            /*$this->_result = $this->_stmt->fetchAll();*/
-            $results = $this->_stmt->fetchAll();
-            if (count($results) <= 1) {
-                $this->_result = $results[0];
-            } else if (count($results) > 1) {
-                $this->_result = $results;
-            }
+            $this->_result = $this->_stmt->fetchAll();
             $this->_count = $this->_stmt->rowCount();
         }
-        /* Use this return expression to test whether query() works from a controller. */
         return $this;   /* Required to pass along results of query() to other methods in this class. */    
     }
 
@@ -181,7 +174,7 @@ class Database {
            method automatically posts results to the _result property, so check for _result values, if exist, return true. */
         $sql = "SELECT * FROM {$table}{$columnString}{$order}{$limit}";
         if ($this->query($sql, $values)) {
-            if (count($this->_result)) {
+            if (!empty($this->_result)) {
                 return true;
             }
             return false;
@@ -214,8 +207,37 @@ class Database {
     public function first() {
         /* Extract the first object from the results array. Note: The PDO fetchAll() method returns an array of objects. 
            Add ternary operator to check  */
-        return (!empty($this->_result)) ? $this->_result[0] : [] ;
+        if (is_array($this->_result) && !empty($this->_result)) {
+            return $this->_result[0];
+        } else if (!is_array($this->_result) && !empty($this->_result)) {
+            return $this->_result;
+        }
+        //return (!empty($this->_result)) ? $this->_result[0] : [] ;
     }
+
+
+
+
+    /* Returns all records within a table, no conditions provided. */
+    public function allRecords($table) {
+        if (!$table) {
+            return false;
+        } else {
+            $sql = "SELECT * FROM {$table}";
+            $this->_stmt = $this->_pdo->prepare($sql);
+            if (!$this->_stmt->execute()) {
+                return false;
+            } else {
+                $this->_result = $this->_stmt->fetchAll();
+                $this->_count = $this->_stmt->rowCount();
+                return true;
+            }
+        }
+    }
+
+
+
+
 
     public function lastInsert() {
         return $this->_lastInsertId;
